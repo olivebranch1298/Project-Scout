@@ -1,0 +1,23 @@
+{
+    "minimum_salary": 200000,
+    "preferred_locations": [
+        "Seattle, WA",
+        "Remote"
+    ],
+    "preferred_work_arrangements": [
+        "Remote",
+        "Hybrid"
+    ],
+    "preferred_titles": [
+        "Technical Program Manager",
+        "Senior Technical Program Manager",
+        "Staff Technical Program Manager"
+    ],
+    "keywords": [
+        "AI",
+        "Trust & Safety",
+        "Infrastructure",
+        "Identity",
+        "Security"
+    ]
+}
