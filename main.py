@@ -22,6 +22,7 @@ from src.scoring.resume_coach import coach_resume
 from src.scoring.company_intelligence import company_intelligence
 from src.scoring.salary_intelligence import salary_intelligence
 from src.scoring.company_fit import company_fit 
+from src.scoring.opportunity_breakdown import opportunity_breakdown
 
 def main():
     welcome()
@@ -40,7 +41,7 @@ def main():
         #Calculate scores
         score = resume_fit(job, settings)
         ats_score = ats_fit(job, settings)
-        
+
         company_info = company_intelligence(job) 
         company_fit_score = company_fit(company_info)
 
@@ -49,6 +50,12 @@ def main():
             ats_score,
             company_fit_score,
         )   
+
+        breakdown = opportunity_breakdown(
+            score,
+            ats_score,
+            company_fit_score,
+        )
 
         salary = salary_intelligence(job)
 
@@ -98,6 +105,7 @@ def main():
             job,
             recommendation,
             overall_score,
+            breakdown,
             score,
             ats_score,
             matched_job_skills,

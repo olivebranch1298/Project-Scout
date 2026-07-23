@@ -2,6 +2,7 @@ def print_job_card(
     job,
     recommendation,
     opportunity,
+    breakdown,
     resume,
     ats,
     matched,
@@ -34,6 +35,13 @@ def print_job_card(
 
     print(f"Recommendation: {recommendation}")
     print(f"Opportunity Score: {opportunity}/100")
+    print("Opportunity Breakdown")
+    print(f"  Resume Fit:  {breakdown['resume']:.1f}")
+    print(f"  ATS Fit:     {breakdown['ats']:.1f}")
+    print(f"  Company Fit: {breakdown['company_fit']:.1f}")
+    print(f"  Total:       {breakdown['total']}")
+    print()
+    
     print(f"Resume Fit: {resume}/100")
     print(f"ATS Fit: {ats}/100")
 
