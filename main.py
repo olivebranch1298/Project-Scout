@@ -23,6 +23,7 @@ from src.scoring.company_intelligence import company_intelligence
 from src.scoring.salary_intelligence import salary_intelligence
 from src.scoring.company_fit import company_fit 
 from src.scoring.opportunity_breakdown import opportunity_breakdown
+from src.scoring.career_advisor import career_advice
 
 def main():
     welcome()
@@ -62,6 +63,7 @@ def main():
         #Figure out recommendation
         recommendation = recommend(overall_score, ats_score)
 
+
         #Extract skills
         job_skills = extract_skills(job)
 
@@ -69,6 +71,15 @@ def main():
         matched_job_skills, missing_job_skills = analyze_skill_gap(
             job_skills,
             profile
+        )
+
+        #Provide career advice and suggestions based on the scores and missing skills
+        advice = career_advice(
+            recommendation,
+            score,
+            ats_score,
+            company_fit_score,
+            missing_job_skills
         )
 
         #Resume Suggestions
@@ -106,6 +117,7 @@ def main():
             recommendation,
             overall_score,
             breakdown,
+            advice,
             score,
             ats_score,
             matched_job_skills,

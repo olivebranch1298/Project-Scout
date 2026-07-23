@@ -3,6 +3,7 @@ def print_job_card(
     recommendation,
     opportunity,
     breakdown,
+    advice,
     resume,
     ats,
     matched,
@@ -15,10 +16,18 @@ def print_job_card(
     salary,
 ):
     
-    print("=" * 60)
+    print()
+    print("═" * 60)
+    print("🎯 JOB SUMMARY")
+    print("═" * 60)
+    print()
 
-    print(job.company)
-    print(job.title)
+    print(f"🏢 Company: {job.company}")
+    print(f"💼 Role:    {job.title}")
+    print()
+
+    print(f"Recommendation: {recommendation}")
+    print(f"Opportunity Score: {opportunity}/100")
     print()
 
     print(f"Estimated Salary: {salary}")
@@ -33,15 +42,20 @@ def print_job_card(
 
     print()
 
-    print(f"Recommendation: {recommendation}")
-    print(f"Opportunity Score: {opportunity}/100")
     print("Opportunity Breakdown")
     print(f"  Resume Fit:  {breakdown['resume']:.1f}")
     print(f"  ATS Fit:     {breakdown['ats']:.1f}")
     print(f"  Company Fit: {breakdown['company_fit']:.1f}")
     print(f"  Total:       {breakdown['total']}")
     print()
-    
+
+    print("Career Advisor")
+
+    for line in advice:
+        print(f"• {line}")
+
+    print()
+
     print(f"Resume Fit: {resume}/100")
     print(f"ATS Fit: {ats}/100")
 
