@@ -14,6 +14,10 @@ from src.scoring.skill_matcher import compare_skills
 from src.scoring.explanation import explain
 from src.scoring.keyword_suggestions import suggest_keywords
 from src.scoring.opportunity_score import opportunity_score
+from src.utils.job_card import print_job_card
+from src.scoring.resume_suggestions import suggest_resume_improvements
+from src.scoring.prioritize_resume import prioritize_resume
+from src.scoring.prioritize_resume import prioritize_resume
 
 def main():
     welcome()
@@ -26,8 +30,10 @@ def main():
 
     for job in jobs:
 
+        #Evaluate the job
         passed, reasons = evaluate_job(job, settings)
 
+        #Calculate scores
         score = resume_fit(job, settings)
         ats_score = ats_fit(job, settings)
         overall_score = opportunity_score(
@@ -35,14 +41,30 @@ def main():
             ats_score
         )   
 
+        #Figure out recommendation
         recommendation = recommend(overall_score, ats_score)
 
+        #Extract skills
         job_skills = extract_skills(job)
 
+        #Compare skills
         matched_job_skills, missing_job_skills = analyze_skill_gap(
             job_skills,
             profile
         )
+
+        #Resume Suggestions
+        resume_suggestions = suggest_resume_improvements(
+            matched_job_skills,
+            missing_job_skills,
+            score,
+        )
+
+        #Prioritize the resume
+        high_priority, medium_priority, low_priority = prioritize_resume(
+            resume_suggestions
+        )
+
         keyword_suggestions = suggest_keywords(
           missing_job_skills
        ) 
@@ -63,14 +85,20 @@ def main():
             )
         )
 
-        print(f"Resume Fit: {score}/100")
-        print(f"ATS Fit: {ats_score}/100")
-        print("Recommendation:", recommendation)
-        print("Job Skills:", job_skills)
-        print("Qualified:", matched_job_skills)
-        print("Missing:", missing_job_skills)
-        print("Suggested Keywords:", keyword_suggestions)
-        print("Explanation:")
+        print_job_card(
+            job,
+            recommendation,
+            overall_score,
+            score,
+            ats_score,
+            matched_job_skills,
+            missing_job_skills,
+            keyword_suggestions,
+            resume_suggestions,
+            reasons,
+)
+
+        
         for reason in reasons:
             print(".", reason )
 
