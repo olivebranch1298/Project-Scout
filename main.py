@@ -12,6 +12,8 @@ from src.scoring.salary_filter import salary_matches
 from src.scoring.location_filter import location_matches
 from src.scoring.skill_matcher import compare_skills
 from src.scoring.explanation import explain
+from src.scoring.keyword_suggestions import suggest_keywords
+from src.scoring.opportunity_score import opportunity_score
 
 def main():
     welcome()
@@ -28,7 +30,12 @@ def main():
 
         score = resume_fit(job, settings)
         ats_score = ats_fit(job, settings)
-        recommendation = recommend(score, ats_score)
+        overall_score = opportunity_score(
+            score,
+            ats_score
+        )   
+
+        recommendation = recommend(overall_score, ats_score)
 
         job_skills = extract_skills(job)
 
@@ -36,6 +43,9 @@ def main():
             job_skills,
             profile
         )
+        keyword_suggestions = suggest_keywords(
+          missing_job_skills
+       ) 
         reasons = explain(
             score,
             ats_score,
@@ -43,6 +53,7 @@ def main():
         )
         results.append(
             (
+                overall_score,
                 score,
                 ats_score,
                 recommendation,
@@ -58,6 +69,7 @@ def main():
         print("Job Skills:", job_skills)
         print("Qualified:", matched_job_skills)
         print("Missing:", missing_job_skills)
+        print("Suggested Keywords:", keyword_suggestions)
         print("Explanation:")
         for reason in reasons:
             print(".", reason )
@@ -67,9 +79,10 @@ def main():
     print("🏆 Ranked Jobs")
     print("----------------")
 
-    for score, ats_score, recommendation, job, passed, reasons in results:
+    for overall_score, score, ats_score, recommendation, job, passed, reasons in results:
         print(
             f"{recommendation} | "
+            f"Opportunity {overall_score}/100 | "
             f"Resume {score}/100 | "
             f"ATS {ats_score}/100 | "
             f"{job.company} | "
