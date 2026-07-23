@@ -11,6 +11,7 @@ from src.scoring.recommendation import recommend
 from src.scoring.salary_filter import salary_matches
 from src.scoring.location_filter import location_matches
 from src.scoring.skill_matcher import compare_skills
+from src.scoring.explanation import explain
 
 def main():
     welcome()
@@ -35,7 +36,11 @@ def main():
             job_skills,
             profile
         )
-
+        reasons = explain(
+            score,
+            ats_score,
+            missing_job_skills
+        )
         results.append(
             (
                 score,
@@ -53,7 +58,9 @@ def main():
         print("Job Skills:", job_skills)
         print("Qualified:", matched_job_skills)
         print("Missing:", missing_job_skills)
-        print()
+        print("Explanation:")
+        for reason in reasons:
+            print(".", reason )
 
     results.sort(reverse=True)
 
