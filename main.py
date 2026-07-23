@@ -18,6 +18,9 @@ from src.utils.job_card import print_job_card
 from src.scoring.resume_suggestions import suggest_resume_improvements
 from src.scoring.prioritize_resume import prioritize_resume
 from src.scoring.prioritize_resume import prioritize_resume
+from src.scoring.resume_coach import coach_resume
+from src.scoring.company_intelligence import company_intelligence
+
 
 def main():
     welcome()
@@ -41,6 +44,8 @@ def main():
             ats_score
         )   
 
+        company_info = company_intelligence(job) 
+
         #Figure out recommendation
         recommendation = recommend(overall_score, ats_score)
 
@@ -54,10 +59,8 @@ def main():
         )
 
         #Resume Suggestions
-        resume_suggestions = suggest_resume_improvements(
-            matched_job_skills,
-            missing_job_skills,
-            score,
+        resume_suggestions = coach_resume(
+            missing_job_skills
         )
 
         #Prioritize the resume
@@ -96,6 +99,7 @@ def main():
             keyword_suggestions,
             resume_suggestions,
             reasons,
+            company_info,
 )
 
         

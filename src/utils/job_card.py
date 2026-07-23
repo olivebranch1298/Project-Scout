@@ -9,11 +9,21 @@ def print_job_card(
     suggestions,
     resume_suggestions,
     reasons,
+    company_info,
 ):
+    
     print("=" * 60)
 
     print(job.company)
     print(job.title)
+    print()
+
+    print("Company Intelligence")
+    print(f"Industry: {company_info['industry']}")
+    print(f"Company Type: {company_info['type']}")
+    print(f"Company Size: {company_info['size']}")
+    print(f"Priority: {company_info['priority']}")
+
     print()
 
     print(f"Recommendation: {recommendation}")
