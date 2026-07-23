@@ -6,12 +6,15 @@ from src.scoring.location_filter import location_matches
 from src.scoring.evaluator import evaluate_job
 from src.scoring.resume_fit import resume_fit
 from src.scoring.ats_fit import ats_fit
+from src.profile_loader import load_profile
+from src.scoring.skill_matcher import compare_skills
 
 
 def main():
     welcome()
 
     settings = load_settings()
+    profile = load_profile()
     jobs = load_jobs()
 
     results = []
@@ -20,7 +23,8 @@ def main():
         passed, reasons = evaluate_job(job, settings)
         score = resume_fit(job, settings)
         ats_score = ats_fit(job, settings)
-
+        matched, missing = compare_skills(job, profile)
+        print("Matched Skills:", matched)
         results.append((score, job, passed, reasons))
 
         print(f"Resume Fit: {score}/100")
