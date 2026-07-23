@@ -20,6 +20,7 @@ from src.scoring.prioritize_resume import prioritize_resume
 from src.scoring.prioritize_resume import prioritize_resume
 from src.scoring.resume_coach import coach_resume
 from src.scoring.company_intelligence import company_intelligence
+from src.scoring.salary_intelligence import salary_intelligence
 
 
 def main():
@@ -45,6 +46,7 @@ def main():
         )   
 
         company_info = company_intelligence(job) 
+        salary = salary_intelligence(job)
 
         #Figure out recommendation
         recommendation = recommend(overall_score, ats_score)
@@ -100,12 +102,8 @@ def main():
             resume_suggestions,
             reasons,
             company_info,
+            salary,
 )
-
-        
-        for reason in reasons:
-            print(".", reason )
-
     results.sort(reverse=True)
 
     print("🏆 Ranked Jobs")

@@ -10,12 +10,16 @@ def print_job_card(
     resume_suggestions,
     reasons,
     company_info,
+    salary,
 ):
     
     print("=" * 60)
 
     print(job.company)
     print(job.title)
+    print()
+
+    print(f"Estimated Salary: {salary}")
     print()
 
     print("Company Intelligence")
