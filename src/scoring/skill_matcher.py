@@ -7,7 +7,9 @@ def compare_skills(job, profile):
 
     for skill in profile["skills"]:
 
-        if skill.lower() in description:
-            matched.append(skill)
+     if skill.lower() in description:
+        matched.append(skill)
+    else:
+        missing.append(skill)
 
     return matched, missing

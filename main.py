@@ -23,8 +23,9 @@ def main():
         passed, reasons = evaluate_job(job, settings)
         score = resume_fit(job, settings)
         ats_score = ats_fit(job, settings)
+
         matched, missing = compare_skills(job, profile)
-        print("Matched Skills:", matched)
+
         results.append((score, job, passed, reasons))
 
         print(f"Resume Fit: {score}/100")
