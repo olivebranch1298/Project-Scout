@@ -21,7 +21,7 @@ from src.scoring.prioritize_resume import prioritize_resume
 from src.scoring.resume_coach import coach_resume
 from src.scoring.company_intelligence import company_intelligence
 from src.scoring.salary_intelligence import salary_intelligence
-
+from src.scoring.company_fit import company_fit 
 
 def main():
     welcome()
@@ -40,12 +40,16 @@ def main():
         #Calculate scores
         score = resume_fit(job, settings)
         ats_score = ats_fit(job, settings)
+        
+        company_info = company_intelligence(job) 
+        company_fit_score = company_fit(company_info)
+
         overall_score = opportunity_score(
             score,
-            ats_score
+            ats_score,
+            company_fit_score,
         )   
 
-        company_info = company_intelligence(job) 
         salary = salary_intelligence(job)
 
         #Figure out recommendation
@@ -102,6 +106,7 @@ def main():
             resume_suggestions,
             reasons,
             company_info,
+            company_fit_score,
             salary,
 )
     results.sort(reverse=True)

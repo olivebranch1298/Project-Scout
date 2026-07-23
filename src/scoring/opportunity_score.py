@@ -1,4 +1,8 @@
-def opportunity_score(resume_score, ats_score):
+from config.user_profile import SCORING_WEIGHTS
+
+
+def opportunity_score(resume_score, ats_score, company_fit_score):    
+
     """
     Overall opportunity score.
 
@@ -13,8 +17,9 @@ def opportunity_score(resume_score, ats_score):
     """
 
     score = (
-        resume_score * 0.7 +
-        ats_score * 0.3
+        resume_score * SCORING_WEIGHTS["resume"] +
+        ats_score * SCORING_WEIGHTS["ats"] +
+        company_fit_score * SCORING_WEIGHTS["company_fit"]
     )
 
     return round(score)

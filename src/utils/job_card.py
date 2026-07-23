@@ -10,6 +10,7 @@ def print_job_card(
     resume_suggestions,
     reasons,
     company_info,
+    company_fit_score,
     salary,
 ):
     
@@ -27,6 +28,7 @@ def print_job_card(
     print(f"Company Type: {company_info['type']}")
     print(f"Company Size: {company_info['size']}")
     print(f"Priority: {company_info['priority']}")
+    print(f"Company Fit: {company_fit_score}/100")
 
     print()
 
