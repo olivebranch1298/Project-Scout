@@ -10,8 +10,38 @@
     ],
     "preferred_titles": [
         "Technical Program Manager",
-        "Senior Technical Program Manager",
-        "Staff Technical Program Manager"
+    "Senior Technical Program Manager",
+    "Staff Technical Program Manager",
+    "Principal Technical Program Manager",
+
+    "Program Manager",
+    "Senior Program Manager",
+    "Staff Program Manager",
+    "Principal Program Manager",
+
+    "Technical Product Manager",
+    "Senior Technical Product Manager",
+
+    "AI Technical Program Manager",
+    "AI Program Manager",
+    "AI Product Manager",
+
+    "Infrastructure Technical Program Manager",
+    "Infrastructure Program Manager",
+
+    "Platform Technical Program Manager",
+    "Platform Program Manager",
+
+    "Security Technical Program Manager",
+    "Security Program Manager",
+
+    "Trust & Safety Program Manager",
+    "Trust & Safety Technical Program Manager",
+
+    "Identity Program Manager",
+    "IAM Program Manager",
+
+    "Enterprise Program Manager"
     ],
     "keywords": [
         "AI",
