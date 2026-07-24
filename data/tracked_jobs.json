@@ -1,0 +1,31 @@
+[
+    {
+        "company": "Google",
+        "title": "Senior Technical Program Manager",
+        "recommendation": "\ud83d\udfe0 Maybe",
+        "opportunity": 74,
+        "resume_fit": 90,
+        "ats_fit": 30,
+        "company_fit": 75,
+        "salary": "$180k\u2013240k",
+        "matched_skills": [],
+        "missing_skills": [],
+        "status": "Wishlist"
+    },
+    {
+        "company": "Anthropic",
+        "title": "Technical Program Manager",
+        "recommendation": "\ud83d\udfe1 Apply",
+        "opportunity": 82,
+        "resume_fit": 94,
+        "ats_fit": 50,
+        "company_fit": 85,
+        "salary": "$210k\u2013260k",
+        "matched_skills": [
+            "AI",
+            "Infrastructure"
+        ],
+        "missing_skills": [],
+        "status": "Wishlist"
+    }
+]

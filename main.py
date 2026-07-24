@@ -24,6 +24,7 @@ from src.scoring.salary_intelligence import salary_intelligence
 from src.scoring.company_fit import company_fit 
 from src.scoring.opportunity_breakdown import opportunity_breakdown
 from src.scoring.career_advisor import career_advice
+from src.tracker.jobs import add_job
 
 def main():
     welcome()
@@ -129,6 +130,23 @@ def main():
             company_fit_score,
             salary,
 )
+        
+        job_record = {
+            "company": job.company,
+            "title": job.title,
+            "recommendation": recommendation,
+            "opportunity": overall_score,
+            "resume_fit": score,
+            "ats_fit": ats_score,
+            "company_fit": company_fit_score,
+            "salary": salary,
+            "matched_skills": matched_job_skills,
+            "missing_skills": missing_job_skills,
+            "status": "Wishlist",
+        }
+
+        add_job(job_record)
+        
     results.sort(reverse=True)
 
     print("🏆 Ranked Jobs")

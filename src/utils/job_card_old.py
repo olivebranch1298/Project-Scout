@@ -1,5 +1,3 @@
-from config.user_profile import SCORING_WEIGHTS
-
 def print_job_card(
     job,
     recommendation,
@@ -44,20 +42,11 @@ def print_job_card(
 
     print()
 
-    print("📈 WHY SCOUT RECOMMENDED THIS")
-    print()
-
-    resume_weight = SCORING_WEIGHTS["resume"]
-    ats_weight = SCORING_WEIGHTS["ats"]
-    company_weight = SCORING_WEIGHTS["company_fit"]
-
-    print(f"Resume Fit      {resume:>5.1f} × {resume_weight:.2f} = {breakdown['resume']:>5.1f}")
-    print(f"ATS Fit         {ats:>5.1f} × {ats_weight:.2f} = {breakdown['ats']:>5.1f}")
-    print(f"Company Fit     {company_fit_score:>5.1f} × {company_weight:.2f} = {breakdown['company_fit']:>5.1f}")
-
-    print("─" * 44)
-
-    print(f"Opportunity Score{'':<5}{breakdown['total']:.0f}")
+    print("Opportunity Breakdown")
+    print(f"  Resume Fit:  {breakdown['resume']:.1f}")
+    print(f"  ATS Fit:     {breakdown['ats']:.1f}")
+    print(f"  Company Fit: {breakdown['company_fit']:.1f}")
+    print(f"  Total:       {breakdown['total']}")
     print()
 
     print("Career Advisor")
@@ -103,4 +92,4 @@ def print_job_card(
         print(f"• {reason}")
 
     print("=" * 60)
-    print() 
+    print()
