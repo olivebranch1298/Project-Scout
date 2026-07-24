@@ -22,8 +22,19 @@ def save_jobs(jobs):
         json.dump(jobs, f, indent=4)
 
 def add_job(job_record):
-    """Add a new job record to the tracker."""
+    """Add a new job record to the tracker if it doesn't already exist."""
 
     jobs = load_jobs()
+
+    for i, job in enumerate(jobs):
+        if (
+            job["company"] == job_record["company"]
+            and job["title"] == job_record["title"]
+        ):
+            
+            jobs[i] = job_record
+            save_jobs(jobs)
+            return
+
     jobs.append(job_record)
     save_jobs(jobs)

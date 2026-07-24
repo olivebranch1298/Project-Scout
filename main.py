@@ -25,6 +25,7 @@ from src.scoring.company_fit import company_fit
 from src.scoring.opportunity_breakdown import opportunity_breakdown
 from src.scoring.career_advisor import career_advice
 from src.tracker.jobs import add_job
+from datetime import date
 
 def main():
     welcome()
@@ -134,6 +135,7 @@ def main():
         job_record = {
             "company": job.company,
             "title": job.title,
+            "date_scored": str(date.today()),
             "recommendation": recommendation,
             "opportunity": overall_score,
             "resume_fit": score,
